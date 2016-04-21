@@ -8,10 +8,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import ren.solid.materialdesigndemo.bean.BookBean;
-import ren.solid.materialdesigndemo.fragment.StringFragment;
+import ren.solid.materialdesigndemo.fragment.base.StringFragment;
 import ren.solid.materialdesigndemo.utils.ViewUtils;
 
 /**
@@ -37,7 +36,7 @@ public class BookInfoPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = ViewUtils.createFrgment(StringFragment.class,false);
+        Fragment fragment = ViewUtils.createFragment(StringFragment.class, false);
         Bundle bundle = new Bundle();
         if (getPageTitle(position).equals("作者信息")) {
             bundle.putString("text", mBookBean.getAuthor_intro());

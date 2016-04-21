@@ -1,5 +1,7 @@
 package ren.solid.materialdesigndemo.fragment.base;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +25,8 @@ public abstract class WebViewFragment extends BaseFragment {
     protected ProgressBar mProgressBar;
 
     @Override
-    protected View setContentView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.fragment_webview, container, false);
+    protected int setLayoutResourceID() {
+        return R.layout.fragment_webview;
     }
 
     /**
@@ -47,7 +49,6 @@ public abstract class WebViewFragment extends BaseFragment {
         mWebView.setWebChromeClient(new MyWebChromeClient());
 
         mProgressBar.setMax(100);
-
         mWebView.loadUrl(getLoadUrl());
 
     }
@@ -194,4 +195,6 @@ public abstract class WebViewFragment extends BaseFragment {
 //            return true;
 //        }
     }
+
+
 }

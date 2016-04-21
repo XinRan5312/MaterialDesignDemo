@@ -2,15 +2,13 @@ package ren.solid.materialdesigndemo.fragment;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ren.solid.materialdesigndemo.R;
-import ren.solid.materialdesigndemo.adapter.CatViewPagerAdapter;
+import ren.solid.materialdesigndemo.adapter.FindPagerAdapter;
 import ren.solid.materialdesigndemo.fragment.base.BaseFragment;
 
 /**
@@ -20,17 +18,18 @@ import ren.solid.materialdesigndemo.fragment.base.BaseFragment;
  */
 public class MainFragment extends BaseFragment {
 
+    private static String TAG = "MainFragment";
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
-
     @Override
-    protected View setContentView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+    protected int setLayoutResourceID() {
+        return R.layout.fragment_main;
     }
 
     @Override
     protected void initView() {
+        Log.i(TAG, "initView");
         mTabLayout = customFindViewById(R.id.sliding_tabs);
         mViewPager = customFindViewById(R.id.viewpager);
 
@@ -39,13 +38,13 @@ public class MainFragment extends BaseFragment {
         titles.add("找书籍");
         titles.add("找电影");
 
-        CatViewPagerAdapter viewPagerAdapter = new CatViewPagerAdapter(getMContext(), titles, getFragmentManager());
+        FindPagerAdapter viewPagerAdapter = new FindPagerAdapter(getMContext(), titles, getChildFragmentManager());
         mViewPager.setAdapter(viewPagerAdapter);
 
         mTabLayout.addTab(mTabLayout.newTab().setText("读书"));
         mTabLayout.addTab(mTabLayout.newTab().setText("电影"));
         mTabLayout.setupWithViewPager(mViewPager);
 
-
+        dynamicAddSkinView(mTabLayout, "tabIndicatorColor", R.color.colorAccent);
     }
 }

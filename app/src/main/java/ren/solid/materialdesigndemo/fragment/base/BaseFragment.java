@@ -9,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ren.solid.skinloader.base.SkinBaseFragment;
+
 /**
  * Created by _SOLID
  * Date:2016/3/30
  * Time:11:30
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends SkinBaseFragment {
 
     private View mContentView;
     private Context mContext;
@@ -23,7 +25,7 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContentView = setContentView(inflater, container);
+        mContentView = inflater.inflate(setLayoutResourceID(), container, false);//setContentView(inflater, container);
         mContext = getContext();
         mProgressDialog = new ProgressDialog(getMContext());
         mProgressDialog.setCanceledOnTouchOutside(false);
@@ -32,6 +34,8 @@ public abstract class BaseFragment extends Fragment {
         initData();
         return mContentView;
     }
+
+    protected abstract int setLayoutResourceID();
 
     protected void initData() {
 
@@ -48,7 +52,7 @@ public abstract class BaseFragment extends Fragment {
         return (T) mContentView.findViewById(id);
     }
 
-    protected abstract View setContentView(LayoutInflater inflater, ViewGroup container);
+    // protected abstract View setContentView(LayoutInflater inflater, ViewGroup container);
 
     protected View getContentView() {
         return mContentView;

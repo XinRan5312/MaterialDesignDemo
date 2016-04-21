@@ -1,4 +1,4 @@
-package ren.solid.materialdesigndemo.fragment;
+package ren.solid.materialdesigndemo.fragment.base;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +18,8 @@ public class StringFragment extends BaseFragment {
     private TextView mTvText;
 
     @Override
-    protected View setContentView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.fragment_string, container, false);
+    protected int setLayoutResourceID() {
+        return R.layout.fragment_string;
     }
 
     @Override
